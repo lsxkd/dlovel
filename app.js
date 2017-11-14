@@ -99,7 +99,7 @@ mongoose.connect('mongodb://localhost:27018/blog',{useMongoClient: true},functio
         console.log("数据库连接失败！");
     }else{
         console.log("数据库连接成功！");
-        app.listen(8081);
+        app.listen($PORT);
     }
 });
 

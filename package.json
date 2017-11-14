@@ -14,7 +14,7 @@
     "swig": "^1.4.2"
   },
   "engines": {
-    "node": "6.11.2",
+    "node": "v6.11.2",
     "npm": "3.10.x"
   }, 
   "dependencies": {

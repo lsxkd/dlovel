@@ -33,7 +33,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start":"app.js"
   },
-  "author": "",
+  "author": "蓝色星空岛",
   "license": "ISC",
   "description": ""
 }

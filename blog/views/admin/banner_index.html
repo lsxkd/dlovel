@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<ol class="breadcrumb">
+    <li><a href="/admin">管理首页</a></li>
+    <li><span>banner列表</span></li>
+</ol>
+
+<h3>banner列表 <span class="" style="float:right;"><a class="btn btn-primary" href="/admin/webSetting/banner_add">添加banner</a></span></h3>
+
+<table class="table table-hover table-striped table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>序号</th>
+        <th>名称</th>
+        <th>链接</th>
+        <th>banner图片地址</th>
+        <!--<th>创建时间</th>-->
+        <th>操作</th>
+    </tr>
+
+    {% for banner in banners %}
+    <tr>
+        <td>{{banner._id.toString()}}</td>
+        <td>{{banner.bannerNo}}</td>
+        <td>{{banner.bannerName}}</td>
+        <td>{{banner.bannerUrl}}</td>
+        <td>{{banner.bannerPath}}</td>
+        <!--<td>{{user.userTime|date('Y-m-d H:i:s',-8*60)}}</td>-->
+        <td>
+            <a href="/admin/webSetting/banner_edit?id={{banner._id.toString()}}">修改</a> |
+            <a href="/admin/webSetting/banner_delete?id={{banner._id.toString()}}">删除</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{%endblock%}

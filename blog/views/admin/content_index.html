@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<ol class="breadcrumb">
+    <li><a href="/admin">管理首页</a></li>
+    <li><span>内容列表</span></li>
+</ol>
+
+<h3>内容列表</h3>
+{% include 'page.html' %}
+<table class="table table-hover table-striped table-bordered">
+    <tr>
+        <th>序号</th>
+        <th>ID</th>
+        <th>分类名称</th>
+        <th>标题</th>
+        <th>作者</th>
+        <th>添加时间</th>
+        <th>阅读量</th>
+        <th>评论</th>
+        <th>操作</th>
+    </tr>
+
+    {% for content in contents %}
+    <tr>
+        <td>{{content.nos}}</td>
+        <td>{{content._id.toString()}}</td>
+        <td>{{content.category.name}}</td>
+        <td>{{content.title}}</td>
+        <td>{{content.user.username}}</td>
+        <td>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</td>
+        <td>{{content.views}}</td>
+        <td class="comments_td">
+            <a class="comments_td_a" href="javascript:;">点击查看评论</a>
+            <div class="comment-box" style="display: none;">
+                <div class="panel panel-default panel-primary" style="max-height: 300px;overflow: auto;width:100%;">
+                    <div class="panel-heading">用户评论</div>
+                    <table class="table">
+                        <tr>
+                            <th>评论者用户名</th>
+                            <th>评论时间</th>
+                            <th>评论内容</th>
+                            <th>评论者昵称</th>
+                            <th>评论者网站或mail</th>
+                        </tr>
+                        {% for comm in content.comments %}
+                            <tr>
+                                <td>{{comm.username}}</td>
+                                <td>{{comm.postTime|date('Y-m-d H:i:s',-8*60)}}</td>
+                                <td>{{comm.content}}</td>
+                                <td>{{comm.nickname}}</td>
+                                <td>{{comm.mail}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </td>
+        <td>
+            <a href="/admin/content/edit?id={{content._id.toString()}}">修改</a> |
+            <a href="/admin/content/delete?id={{content._id.toString()}}">删除</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+<script>
+    $(function(){
+        $(".comments_td .comments_td_a").on({
+            "click":function(){
+                $(".tr_comment").remove();
+                $(this).closest("tr").after('<tr class="tr_comment"><td class="td_comment" colspan="9"></td></tr>');
+                //$('.comment-box').hide();
+                var strs = $(this).next('.comment-box').html();
+                $(".td_comment").html(strs);
+            }
+        })
+    });
+</script>
+{% include 'page.html' %}
+
+{%endblock%}
+

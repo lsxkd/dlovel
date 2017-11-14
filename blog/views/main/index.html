@@ -1,0 +1,73 @@
+{%extends 'layout.html' %}
+
+{%block content%}
+
+
+<article class="excerpt-minic excerpt-minic-index">
+<h2><span class="red">【推荐】</span><a target="_blank" href="#" title="用DTcms做一个独立博客网站（响应式模板）" >用DTcms做一个独立博客网站（响应式模板）</a>
+</h2>
+<p class="note">用DTcms做一个独立博客网站（响应式模板），采用DTcms V4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcms V4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦）</p>
+</article>
+<div class="title">
+    <h3>最新发布</h3>
+    <div class="more">
+        <a href="#" title="MZ-NetBlog主题" >MZ-NetBlog主题</a>
+        <a href="#" title="IT技术笔记" >IT技术笔记</a>
+        <a href="#" title="源码分享" >源码分享</a>
+        <a href="#" title="靠谱网赚" >靠谱网赚</a>
+        <a href="#" title="资讯分享" >资讯分享</a>
+    </div>
+</div>
+
+
+{% for content in contents %}
+<!--内容循环 start-->
+<article class="excerpt excerpt-1" style="">
+    <a class="focus" href="/view?contentid={{content.id}}" title="{{content.title}}" target="_blank" >
+        <img class="thumb" data-original="{{content.conImages}}" src="{{content.conImages}}" alt=""  style="display: inline;">
+    </a>
+    <header>
+        <a class="cat" href="/view?contentid={{content.id}}" title="{{content.title}}" >{{content.title}}<i></i></a>
+        <h2><a href="/view?contentid={{content.id}}" title="{{content.title}}" target="_blank" >{{content.title}}</a>
+        </h2>
+    </header>
+    <p class="meta">
+        <span class="views"><i class="glyphicon glyphicon-user"></i> {{content.user.username}}</span>
+        <time class="time"><i class="glyphicon glyphicon-time"></i> {{content.addTime|date('Y-m-d H:i:s',-8*60)}}</time>
+        <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{content.views}}</span>
+        <a class="comment" href="##comment" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i> {{content.comments.length}}</a>
+    </p>
+    <p class="note">{{content.description}}</p>
+</article>
+<!--内容循环 end-->
+{%endfor%}
+
+
+<nav class="pagination" style="display: block;">
+    <ul>
+        <li class="prev-page">
+            {% if page<=1 %}
+            <a href="javascript:;" style="cursor: no-drop;">没有上一页了</a>
+            {%else%}
+            <a href="?category={{category}}&page={{page-1}}">上一页</a>
+            {%endif%}
+        </li>
+
+        {%if pages > 0%}
+        <li class="active"><span>{{page}}</span></li>
+        {%else%}
+        <li class="active"><span>当前分类下没有内容</span></li>
+        {%endif%}
+        <!--<li><a href="?page=2">2</a></li>-->
+        <li class="next-page">
+            {% if page>=pages %}
+            <a href="javascript:;" style="cursor: no-drop;">没有下一页了</a>
+            {%else%}
+            <a href="?category={{category}}&page={{page+1}}">下一页</a>
+            {%endif%}
+        </li>
+        <li><span>共 {{pages}} 页</span></li>
+    </ul>
+</nav>
+
+{%endblock%}

@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<ol class="breadcrumb">
+    <li><a href="/admin">管理首页</a></li>
+    <li><span>网站banner设置</span></li>
+</ol>
+
+<h3>网站banner设置</h3>
+<p><br /></p>
+<form role="form"   enctype="multipart/form-data" id=""  method="post">
+    <div class="form-group">
+        <label for="bannerNo">banner序号：</label>
+        <input type="text" maxlength="1" class="form-control" id="bannerNo" value="" placeholder="请输入序号(只能输入1-5的正整数)" name="bannerNo">
+    </div>
+    <div class="form-group">
+        <label for="bannerName">banner名称：</label>
+        <input type="text" class="form-control" id="bannerName"  value="" placeholder="请输入名称" name="bannerName">
+    </div>
+
+    <div class="form-group">
+        <label for="imgfile">banner图片：</label>
+        <p class="logo_p_con">
+            <img src="" id="bannerImgs" alt="" style="max-width:500px;max-height: 300px;">
+            <p id="tips_upload" style="display:none;color:#FF0202;"></p>
+            <input id="imgfile" class="" type="file"  name="conImages" value=""  >
+        </p>
+    </div>
+    <script>
+        $(function(){
+            $("#imgfile").uploadPreview({ Img: "bannerImgs", Width: 120, Height: 120 });
+        })
+    </script>
+    <div class="form-group">
+        <label for="bannerUrl">banner连接：</label>
+        <input id="bannerUrl" class="form-control"  value="http://" placeholder="请输入banner连接"  name="bannerUrl">
+    </div>
+
+    <p><br /></p>
+    <button type="submit" class="btn btn-info"  data-toggle="popover" data-trigger="focus" title="提示" data-content="">提交</button>
+</form>
+<script>
+    $(function(){
+        $("#bannerNo").keyup(function(e){
+            if(e.keyCode==38||e.keyCode==39||e.keyCode==40||e.keyCode==37){
+
+            }else{
+                this.value = this.value.replace(/[^\d]/g, '')
+            };
+            if(this.value > 5 || this.value == 0){
+                this.value = ""
+            }
+        });
+    })
+</script>
+<p><br /></p>
+<p><br /></p>
+<p><br /></p>
+{%endblock%}

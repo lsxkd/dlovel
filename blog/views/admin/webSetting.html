@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<ol class="breadcrumb">
+    <li><a href="/admin">管理首页</a></li>
+    <li><span>网站基本设置</span></li>
+</ol>
+
+<h3>网站基本设置</h3>
+
+<form role="form"   enctype="multipart/form-data" id="webSetting_form"  method="post">
+    <div class="form-group">
+        <label for="webName">网站名称：</label>
+        <input type="text" class="form-control" id="webName" value="{{wenSetting.webName}}" placeholder="请输入网站名称" name="webName">
+    </div>
+    <div class="form-group">
+        <label for="webSlogan">网站Slogan：</label>
+        <input type="text" class="form-control" id="webSlogan"  value="{{wenSetting.webSlogan}}" placeholder="请输入网站Slogan" name="webSlogan">
+    </div>
+    <div class="form-group">
+        <label for="webMessage">系统消息：</label>
+        <input id="webMessage" class="form-control"  value="{{wenSetting.webMessage}}"  placeholder="请输入系统消息"  name="webMessage">
+    </div>
+    <div class="form-group">
+        <label for="webTitle">网站标题：</label>
+        <input id="webTitle" class="form-control"  value="{{wenSetting.webTitle}}"  placeholder="请输入网站标题"  name="webTitle">
+    </div>
+    <div class="form-group">
+        <label for="webLogo">网站logo：</label>
+
+        {% if wenSetting.webLogo %}
+        <p class="logo_p_con">
+            <img src="{{wenSetting.webLogo}}" id="webLogoImg" alt="{{wenSetting.webName}}" style="max-width:300px;max-height: 300px;">
+            <a href="javascript:;" class="btn btn-primary edit_logo_img" style="vertical-align: bottom;">修改</a>
+            <a href="javascript:;" class="btn btn-danger cancel_logo_img" style="vertical-align: bottom;">取消</a>
+            <input type="hidden" value="{{wenSetting.webLogo}}" name="logoalready">
+            <p id="tips_upload" style="display:none;color:#FF0202;"></p>
+
+            <input id="webLogo" class="" type="file"  name="conImages" value=""  style="display:none;">
+
+        </p>
+        {%else%}
+        <br>
+        <input id="webLogo" class="" type="file"  name="conImages" value="" >
+        {%endif%}
+
+
+        <!--<button type="submit" class="btn btn-primary">提交</button>-->
+        <!--<button type="reset" class="btn btn-default">重置</button>-->
+    </div>
+    <script>
+
+        $(function(){
+            $("#webLogo").uploadPreview({ Img: "webLogoImg", Width: 120, Height: 120 });
+
+            $(".edit_logo_img").on({
+                "click":function(){
+                    //strs = '<input id="webLogo" class="" type="file"  name="conImages" value="" >';
+                    //$(this).closest('.logo_p_con').after(strs);
+                    $("#webLogo").show();
+                }
+            });
+            $(".cancel_logo_img").on({
+                "click":function(){
+                    //$(this).closest('.logo_p_con').next("#webLogo").remove();
+                    $("#webLogo").hide();
+                }
+            })
+        })
+    </script>
+    <div class="form-group">
+        <label for="webKeywords">网站关键字：</label>
+        <input id="webKeywords" class="form-control"  value="{{wenSetting.webKeywords}}" placeholder="请输入网站关键字"  name="webKeywords">
+    </div>
+    <div class="form-group">
+        <label for="webDescription">网站描述：</label>
+        <textarea name="webDescription" id="webDescription" cols="30" rows="5" class="form-control"   placeholder="请输入网站描述">{{wenSetting.webDescription}}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="webUrl">网站网址：</label>
+        <input id="webUrl" class="form-control" value="{{wenSetting.webUrl}}"  placeholder="请输入网站网址"  name="webUrl">
+    </div>
+    <div class="form-group">
+        <label for="webIcp">网站备案号：</label>
+        <input id="webIcp" class="form-control" value="{{wenSetting.webIcp}}"  placeholder="请输入网站备案号"  name="webIcp">
+    </div>
+    <div class="form-group">
+        <label for="webMaster">网站站长：</label>
+        <input id="webMaster" class="form-control" value="{{wenSetting.webMaster}}"  placeholder="请输入网站站长"  name="webMaster">
+    </div>
+    <div class="form-group">
+        <label for="webQq">站长QQ：</label>
+        <input id="webQq" class="form-control" value="{{wenSetting.webQq}}"  placeholder="请输入站长QQ"  name="webQq">
+    </div>
+    <div class="form-group">
+        <label for="webMail">站长邮箱：</label>
+        <input id="webMail" class="form-control" value="{{wenSetting.webMail}}"  placeholder="请输入站长邮箱"  name="webMail">
+    </div>
+    <div class="form-group">
+        <label for="webTimes">建站日期：</label>
+        <input id="webTimes" class="form-control" value="{{wenSetting.webTimes}}"  placeholder="请输入建站日期"  name="webTimes">
+    </div>
+    <div class="form-group">
+        <label for="webCopyright">版权信息：</label>
+        <textarea name="webCopyright" id="webCopyright" cols="30" rows="5" class="form-control"  placeholder="请输入版权信息">{{wenSetting.webCopyright}}</textarea>
+    </div>
+
+    <input type="hidden" name="hidden_id" value="{{wenSetting._id.toString()}}">
+    <p><br /></p>
+    <button type="submit" class="btn btn-info submit_setting"  data-toggle="popover" data-trigger="focus" title="提示" data-content="">提交</button>
+</form>
+<p><br /></p>
+<p><br /></p>
+<p><br /></p>
+{%endblock%}

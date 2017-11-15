@@ -1,6 +1,6 @@
 /**
  * Created by john on 2017/8/21.
- * 应用程序的启动入口文件
+ * 应用程序的启动入口文件 蓝色星空岛
  */
 //加载express模块
 var express = require('express');

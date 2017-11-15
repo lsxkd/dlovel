@@ -94,7 +94,7 @@ app.use('/',require('./routers/main'));
 
 
 //监听http请求
-mongoose.connect('mongodb://localhost:27018/blog',{useMongoClient: true},function(err){
+mongoose.connect('mongodb://dlovel:yang199026@ds163745.mlab.com:63745/dlovel',{useMongoClient: true},function(err){
     if(err){
         console.log("数据库连接失败！");
     }else{

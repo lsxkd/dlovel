@@ -99,7 +99,7 @@ mongoose.connect('mongodb://dlovel:yang199026@ds163745.mlab.com:63745/dlovel',{u
         console.log("数据库连接失败！");
     }else{
         console.log("数据库连接成功！");
-        app.listen($PORT);
+        app.listen(PORT);
     }
 });
 

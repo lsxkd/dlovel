@@ -25,6 +25,14 @@ app.use(multer({ dest: '/tmp/'}).array('conImages'));
 //
 var User = require('./models/User');
 
+
+var aws = require('aws-sdk');
+
+var s3 = new aws.S3({
+  accessKeyId: process.env.S3_KEY,
+  secretAccessKey: process.env.S3_SECRET
+});
+
 //设置静态文件托管
 //当用户访问的URL以/public开始，那么直接返回对应__dirname + '/public'下的文件
 app.use('/public',express.static( __dirname + '/public'));

@@ -102,7 +102,7 @@ app.use('/',require('./routers/main'));
 
 
 //监听http请求
-mongoose.connect('mongodb://dlovel:yang199026@ds163745.mlab.com:63745/dlovel',{useMongoClient: true},function(err){
+mongoose.connect('mongodb://blog:yang199026@ds111066.mlab.com:11066/duchunyang',{useMongoClient: true},function(err){
     if(err){
         console.log("数据库连接失败！");
     }else{
